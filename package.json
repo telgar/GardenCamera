@@ -1,0 +1,9 @@
+{
+  "name": "garden-camera",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "node-raspistill": "0.0.14"
+  }
+}
