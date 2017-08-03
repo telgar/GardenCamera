@@ -2,21 +2,22 @@ const Raspistill = require('node-raspistill').Raspistill;
 const fs = require('fs');
 
 const raspistill = new Raspistill({
-    fileName: 'image%04d',
+    fileName: 'image',
     encoding: 'jpg',
     width: 640,
     height: 480,
-    //outputDir: ""
+    outputDir: "/var/www/html/photos"
 });
 
-let i = 0;
-raspistill.timelapse(1000, 30000, (image) => {
-    i++;
-    console.log('photo ' + i + ' is now stored on drive ');
-})
-    .then(() => {
-        console.log('timelapse ended')
+var interval = setInterval(function(str1, str2) {
+  raspistill.takePhoto()
+    .then((photo) => {
+        console.log('took photo', photo);
     })
-    .catch((err) => {
-        console.log('something bad happened', err);
+    .catch((error) => {
+        console.error('something bad happened', error);
     });
+}, 10000);
+
+clearInterval(interval);
+
