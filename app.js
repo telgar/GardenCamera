@@ -9,7 +9,8 @@ const raspistill = new Raspistill({
     outputDir: "/var/www/html/photos"
 });
 
-var interval = setInterval(function(str1, str2) {
+var interval = setInterval(function() {
+
   raspistill.takePhoto()
     .then((photo) => {
         console.log('took photo', photo);
@@ -17,7 +18,8 @@ var interval = setInterval(function(str1, str2) {
     .catch((error) => {
         console.error('something bad happened', error);
     });
+    
 }, 10000);
 
-clearInterval(interval);
+
 
